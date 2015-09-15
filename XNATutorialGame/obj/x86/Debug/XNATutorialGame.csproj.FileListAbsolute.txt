@@ -1,0 +1,7 @@
+C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\XNATutorialGame.exe
+C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\XNATutorialGame.pdb
+C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\obj\x86\Debug\XNATutorialGame.exe
+C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\obj\x86\Debug\XNATutorialGame.pdb
+C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\SquareGuy.xnb
