@@ -20,8 +20,11 @@ namespace XNATutorialGame
     {
         GraphicsDeviceManager graphics;//XNA VARIABLES
         SpriteBatch spriteBatch;
+        /*
         Vector2 mPosition = new Vector2(0, 0);//this basically is x and y co-ordinates. Just called Vector2.
         Texture2D mSpriteTexture;//Texture2D is a 2d image
+         */
+        Sprite mSprite;//add sprite object
 
         public Game1()
         {
@@ -38,6 +41,7 @@ namespace XNATutorialGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            mSprite = new Sprite();//initialize sprite object
 
             base.Initialize();
         }
@@ -52,7 +56,9 @@ namespace XNATutorialGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            mSpriteTexture = this.Content.Load<Texture2D>("SquareGuy");
+            //mSpriteTexture = this.Content.Load<Texture2D>("SquareGuy");
+            mSprite.LoadContent(this.Content, "SquareGuy");
+            mSprite.Position = new Vector2(125, 245);
         }
 
         /// <summary>
@@ -91,7 +97,8 @@ namespace XNATutorialGame
             // TODO: Add your drawing code here
             //Spritebatch object is auto created when windows game is made. this is what's used to draw 2d objects to screen. This needs to be begun and ended.
             spriteBatch.Begin();
-            spriteBatch.Draw(mSpriteTexture, mPosition, Color.White);
+            //spriteBatch.Draw(mSpriteTexture, mPosition, Color.White);
+            mSprite.Draw(this.spriteBatch);
             spriteBatch.End();
 
 
