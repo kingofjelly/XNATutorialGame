@@ -61,23 +61,23 @@ namespace XNATutorialGame
                 mSpeed = Vector2.Zero;
                 mDirection = Vector2.Zero;
 
-                if (aCurrentKeyboardState.IsKeyDown(Keys.Left) == true)
+                if (aCurrentKeyboardState.IsKeyDown(Keys.Left) == true || aCurrentKeyboardState.IsKeyDown(Keys.A) == true)
                 {
                     mSpeed.X = WIZARD_SPEED;
                     mDirection.X = MOVE_LEFT;
                 }
-                else if (aCurrentKeyboardState.IsKeyDown(Keys.Right) == true)
+                else if (aCurrentKeyboardState.IsKeyDown(Keys.Right) == true || aCurrentKeyboardState.IsKeyDown(Keys.D) == true)
                 {
                     mSpeed.X = WIZARD_SPEED;
                     mDirection.X = MOVE_RIGHT;
                 }
 
-                if (aCurrentKeyboardState.IsKeyDown(Keys.Up) == true)
+                if (aCurrentKeyboardState.IsKeyDown(Keys.Up) == true || aCurrentKeyboardState.IsKeyDown(Keys.W) == true)
                 {
                     mSpeed.Y = WIZARD_SPEED;
                     mDirection.Y = MOVE_UP;
                 }
-                else if (aCurrentKeyboardState.IsKeyDown(Keys.Down) == true)
+                else if (aCurrentKeyboardState.IsKeyDown(Keys.Down) == true || aCurrentKeyboardState.IsKeyDown(Keys.S) == true)
                 {
                     mSpeed.Y = WIZARD_SPEED;
                     mDirection.Y = MOVE_DOWN;

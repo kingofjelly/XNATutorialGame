@@ -12,9 +12,7 @@ namespace XNATutorialGame
 
     class Sprite
     {
-        //aking sprite class
-        //public = acessible outside this class
-        //private = editable inside class only
+       
         public Vector2 Position = new Vector2(0, 0);//position for this class objects. Accessible externally.
 
         private Texture2D mSpriteTexture;//texture for this class. Can only be accessed within this class

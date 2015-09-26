@@ -24,8 +24,8 @@ namespace XNATutorialGame
         Vector2 mPosition = new Vector2(0, 0);//this basically is x and y co-ordinates. Just called Vector2.
         Texture2D mSpriteTexture;//Texture2D is a 2d image
          */
-        Sprite mSprite;//add sprite object
-        Sprite mSpriteTwo;
+        Wizard mWizardSprite;//gives Wizard an alias?
+
 
         public Game1()
         {
@@ -42,8 +42,8 @@ namespace XNATutorialGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            mSprite = new Sprite();//initialize sprite object
-            mSpriteTwo = new Sprite();
+            mWizardSprite = new Wizard();
+
 
             base.Initialize();
         }
@@ -60,11 +60,7 @@ namespace XNATutorialGame
             // TODO: use this.Content to load your game content here
             //mSpriteTexture = this.Content.Load<Texture2D>("SquareGuy");
 
-            mSprite.LoadContent(this.Content, "SquareGuy");//call loadcontent method
-            mSprite.Position = new Vector2(125, 245);//set public position
-
-            mSpriteTwo.LoadContent(this.Content, "SquareGuy");
-            mSpriteTwo.Position = new Vector2(300, 100);
+            mWizardSprite.LoadContent(this.Content);
         }
 
         /// <summary>
@@ -89,6 +85,8 @@ namespace XNATutorialGame
 
             // TODO: Add your update logic here
 
+            mWizardSprite.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -104,8 +102,7 @@ namespace XNATutorialGame
             //Spritebatch object is auto created when windows game is made. this is what's used to draw 2d objects to screen. This needs to be begun and ended.
             spriteBatch.Begin();
             //spriteBatch.Draw(mSpriteTexture, mPosition, Color.White);
-            mSprite.Draw(this.spriteBatch);
-            mSpriteTwo.Draw(this.spriteBatch);
+            mWizardSprite.Draw(this.spriteBatch);
             spriteBatch.End();
 
 
