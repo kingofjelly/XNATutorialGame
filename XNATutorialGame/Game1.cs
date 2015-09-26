@@ -25,6 +25,8 @@ namespace XNATutorialGame
         Texture2D mSpriteTexture;//Texture2D is a 2d image
          */
         Wizard mWizardSprite;//gives Wizard an alias?
+        FallingObjects mFallingObjectSprite;
+        FallingObjects[] fallingObjectsArray = new FallingObjects[3];
 
 
         public Game1()
@@ -43,7 +45,11 @@ namespace XNATutorialGame
         {
             // TODO: Add your initialization logic here
             mWizardSprite = new Wizard();
-
+            mFallingObjectSprite = new FallingObjects();
+            for (int i = 0; i < fallingObjectsArray.Length; i++)
+            {
+                fallingObjectsArray[i] = new FallingObjects();
+            }
 
             base.Initialize();
         }
@@ -61,6 +67,11 @@ namespace XNATutorialGame
             //mSpriteTexture = this.Content.Load<Texture2D>("SquareGuy");
 
             mWizardSprite.LoadContent(this.Content);
+            mFallingObjectSprite.LoadContent(this.Content);
+            for (int i = 0; i < fallingObjectsArray.Length; i++)
+            {
+                fallingObjectsArray[i].LoadContent(this.Content);
+            }
         }
 
         /// <summary>
@@ -86,7 +97,11 @@ namespace XNATutorialGame
             // TODO: Add your update logic here
 
             mWizardSprite.Update(gameTime);
-
+            mFallingObjectSprite.Update(gameTime);
+            for (int i = 0; i < fallingObjectsArray.Length; i++)
+            {
+                fallingObjectsArray[i].Update(gameTime);
+            }
             base.Update(gameTime);
         }
 
@@ -102,7 +117,12 @@ namespace XNATutorialGame
             //Spritebatch object is auto created when windows game is made. this is what's used to draw 2d objects to screen. This needs to be begun and ended.
             spriteBatch.Begin();
             //spriteBatch.Draw(mSpriteTexture, mPosition, Color.White);
-            mWizardSprite.Draw(this.spriteBatch);
+            //mWizardSprite.Draw(this.spriteBatch);
+            mFallingObjectSprite.Draw(this.spriteBatch);
+            for (int i = 0; i < fallingObjectsArray.Length; i++)
+            {
+                fallingObjectsArray[i].Draw(this.spriteBatch);
+            }
             spriteBatch.End();
 
 
