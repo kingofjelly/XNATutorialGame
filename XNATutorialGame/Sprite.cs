@@ -42,14 +42,25 @@ namespace XNATutorialGame
         {
             mSpriteTexture = theContentManager.Load<Texture2D>(theAssetName);
             //sprite class doesn't have built in content manager, so needs one. It also needs name of asset that will be loaded
+            AssetName = theAssetName;
+            Size = new Rectangle(0, 0, (int)(mSpriteTexture.Width * Scale), (int)(mSpriteTexture.Height * Scale));
+
+        }
+
+        //update sprite based on speed, direction and elapsed time
+        public void Update(GameTime theGameTime, Vector2 theSpeed, Vector2 theDirection)
+        {
+            Position += theDirection * theSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;
         }
 
         //draw sprites to the screen
-
         public void Draw(SpriteBatch theSpriteBatch)
         {
-            theSpriteBatch.Draw(mSpriteTexture, Position, Color.White);
+            theSpriteBatch.Draw(mSpriteTexture, Position, 
+                new Rectangle(0,0, mSpriteTexture.Width, mSpriteTexture.Height),
+                Color.White, 0.0f, Vector2.Zero, Scale, SpriteEffects.None, 0);
         }
 
+       
     }
 }
