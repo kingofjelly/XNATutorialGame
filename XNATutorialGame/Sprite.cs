@@ -13,11 +13,30 @@ namespace XNATutorialGame
     class Sprite
     {
         //aking sprite class
-
+        //public = acessible outside this class
+        //private = editable inside class only
         public Vector2 Position = new Vector2(0, 0);//position for this class objects. Accessible externally.
 
         private Texture2D mSpriteTexture;//texture for this class. Can only be accessed within this class
         //now need to load + draw + update content?
+        //asset name for sprite texture
+        public string AssetName;
+        //size of sprite with scale applied
+        public Rectangle Size;
+        //amount to increase/decrease size of original sprite
+        private float mScale = 1.0f;
+
+        public float Scale
+        {
+            get { return mScale; }
+            set
+            {
+                mScale = value;
+                //recalculate the size of the sprite with the new scale
+                Size = new Rectangle(0, 0, (int)(mSpriteTexture.Width * Scale), (int)(mSpriteTexture.Height * Scale));
+            }
+        }
+
 
         public void LoadContent(ContentManager theContentManager, string theAssetName)
         {

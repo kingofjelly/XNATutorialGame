@@ -25,6 +25,7 @@ namespace XNATutorialGame
         Texture2D mSpriteTexture;//Texture2D is a 2d image
          */
         Sprite mSprite;//add sprite object
+        Sprite mSpriteTwo;
 
         public Game1()
         {
@@ -42,6 +43,7 @@ namespace XNATutorialGame
         {
             // TODO: Add your initialization logic here
             mSprite = new Sprite();//initialize sprite object
+            mSpriteTwo = new Sprite();
 
             base.Initialize();
         }
@@ -57,8 +59,12 @@ namespace XNATutorialGame
 
             // TODO: use this.Content to load your game content here
             //mSpriteTexture = this.Content.Load<Texture2D>("SquareGuy");
-            mSprite.LoadContent(this.Content, "SquareGuy");
-            mSprite.Position = new Vector2(125, 245);
+
+            mSprite.LoadContent(this.Content, "SquareGuy");//call loadcontent method
+            mSprite.Position = new Vector2(125, 245);//set public position
+
+            mSpriteTwo.LoadContent(this.Content, "SquareGuy");
+            mSpriteTwo.Position = new Vector2(300, 100);
         }
 
         /// <summary>
@@ -99,6 +105,7 @@ namespace XNATutorialGame
             spriteBatch.Begin();
             //spriteBatch.Draw(mSpriteTexture, mPosition, Color.White);
             mSprite.Draw(this.spriteBatch);
+            mSpriteTwo.Draw(this.spriteBatch);
             spriteBatch.End();
 
 
