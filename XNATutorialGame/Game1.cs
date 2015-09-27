@@ -27,12 +27,20 @@ namespace XNATutorialGame
         Wizard mWizardSprite;//gives Wizard an alias?
         FallingObjects mFallingObjectSprite;
         FallingObjects[] fallingObjectsArray = new FallingObjects[3];
+        //used internally of methods, to avoid objects going off screen
+        public const int screenWidth = 1280;
+        public const int screenHeight = 800;
+
 
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            //initialize screen resizing
+            graphics.PreferredBackBufferWidth = screenWidth;
+            graphics.PreferredBackBufferHeight = screenHeight;
+            Window.AllowUserResizing = true;
         }
 
         /// <summary>
@@ -50,6 +58,8 @@ namespace XNATutorialGame
             {
                 fallingObjectsArray[i] = new FallingObjects();
             }
+
+
 
             base.Initialize();
         }
@@ -117,7 +127,7 @@ namespace XNATutorialGame
             //Spritebatch object is auto created when windows game is made. this is what's used to draw 2d objects to screen. This needs to be begun and ended.
             spriteBatch.Begin();
             //spriteBatch.Draw(mSpriteTexture, mPosition, Color.White);
-            //mWizardSprite.Draw(this.spriteBatch);
+            mWizardSprite.Draw(this.spriteBatch);
             mFallingObjectSprite.Draw(this.spriteBatch);
             for (int i = 0; i < fallingObjectsArray.Length; i++)
             {

@@ -13,14 +13,14 @@ namespace XNATutorialGame
     class Wizard : Sprite //indicates it inherits sprite class. Will need to provide all sprite properties
     {
         const string WIZARD_ASSETNAME = "WizardSquare";
-        const int START_POSITION_X = 125;
-        const int START_POSITION_Y = 245;
+        const int START_POSITION_X = 640;//X IS HORIZONTAL. Y IS VERTICAL!!!!
+        const int START_POSITION_Y = 600;
         const int WIZARD_SPEED = 160;
         const int MOVE_UP = -1;
         const int MOVE_DOWN = 1;
         const int MOVE_LEFT = -1;
         const int MOVE_RIGHT = 1;
-
+        
         enum State
         {
             Walking//=1
@@ -47,13 +47,14 @@ namespace XNATutorialGame
         {
             KeyboardState aCurrentKeyboardState = Keyboard.GetState();
 
+            //LINKS IN WITH ABOVE METHOD
             UpdateMovement(aCurrentKeyboardState);
 
             mPreviousKeyboardState = aCurrentKeyboardState;
 
             base.Update(theGameTime, mSpeed, mDirection);
         }
-
+        //UPDATE WIZARD MOVEMENT
         private void UpdateMovement(KeyboardState aCurrentKeyboardState)//updates movement. needed for positon and drawing
         {
             if (mCurrentState == State.Walking)

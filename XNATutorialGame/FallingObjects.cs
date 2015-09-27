@@ -18,8 +18,9 @@ namespace XNATutorialGame
         ///Rectangle?
         ///Speed
         ///Velocity?
-        ///
+        ///DEFAULT WINDOW SIZE = 800 x 600
         const string WIZARD_ASSETNAME = "SquareGuy";//temp placeholder
+
         const int START_POSITION_X = 125;
         const int START_POSITION_Y = 245;
         const int START_POSITION_X1 = 225;
@@ -70,6 +71,7 @@ namespace XNATutorialGame
         //Update
         public void Update(GameTime theGameTime)
         {
+            //any methods can be put in here. It's a Update > Draw cycle, until the objectt gets unloaded
             KeyboardState aCurrentKeyboardState = Keyboard.GetState();            
             UpdateMovement();
             base.Update(theGameTime, mSpeed, mDirection);
