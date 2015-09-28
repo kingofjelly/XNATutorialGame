@@ -18,8 +18,8 @@ namespace XNATutorialGame
         const int WIZARD_SPEED = 160;
         const int MOVE_UP = -1;
         const int MOVE_DOWN = 1;
-        const int MOVE_LEFT = -1;
-        const int MOVE_RIGHT = 1;
+        const int MOVE_LEFT = -2;
+        const int MOVE_RIGHT = 2;
         
         enum State
         {
@@ -61,28 +61,48 @@ namespace XNATutorialGame
             {
                 mSpeed = Vector2.Zero;
                 mDirection = Vector2.Zero;
+                if (Position.X > 0) //0 is window  length. x axis
+                {
+                    if (aCurrentKeyboardState.IsKeyDown(Keys.Left) == true || aCurrentKeyboardState.IsKeyDown(Keys.A) == true)
+                    {
+                        mSpeed.X = WIZARD_SPEED;
+                        mDirection.X = MOVE_LEFT;
+                    }
 
-                if (aCurrentKeyboardState.IsKeyDown(Keys.Left) == true || aCurrentKeyboardState.IsKeyDown(Keys.A) == true)
-                {
-                    mSpeed.X = WIZARD_SPEED;
-                    mDirection.X = MOVE_LEFT;
-                }
-                else if (aCurrentKeyboardState.IsKeyDown(Keys.Right) == true || aCurrentKeyboardState.IsKeyDown(Keys.D) == true)
-                {
-                    mSpeed.X = WIZARD_SPEED;
-                    mDirection.X = MOVE_RIGHT;
                 }
 
-                if (aCurrentKeyboardState.IsKeyDown(Keys.Up) == true || aCurrentKeyboardState.IsKeyDown(Keys.W) == true)
+                else  if (Position.X == 0)
+                    {
+
+                        mSpeed.X = 0;//set speed to 0.
+               
+                    }
+
+
+                if (Position.X < 1080)//sprite is 200 wide
                 {
-                    mSpeed.Y = WIZARD_SPEED;
-                    mDirection.Y = MOVE_UP;
+                    if (aCurrentKeyboardState.IsKeyDown(Keys.Right) == true || aCurrentKeyboardState.IsKeyDown(Keys.D) == true)
+                    {
+                        mSpeed.X = WIZARD_SPEED;
+                        mDirection.X = MOVE_RIGHT;
+                    }
                 }
-                else if (aCurrentKeyboardState.IsKeyDown(Keys.Down) == true || aCurrentKeyboardState.IsKeyDown(Keys.S) == true)
+                else if (Position.X == 1080) //not 1280, due to sprite length of 200 pix
                 {
-                    mSpeed.Y = WIZARD_SPEED;
-                    mDirection.Y = MOVE_DOWN;
+                    mSpeed.X = 0;
                 }
+
+                //TEMP DISABLE UP DOWN. DON'T NEED FOR WIZARD SPRITE
+                //if (aCurrentKeyboardState.IsKeyDown(Keys.Up) == true || aCurrentKeyboardState.IsKeyDown(Keys.W) == true)
+                //{
+                //    mSpeed.Y = WIZARD_SPEED;
+                //    mDirection.Y = MOVE_UP;
+                //}
+                //else if (aCurrentKeyboardState.IsKeyDown(Keys.Down) == true || aCurrentKeyboardState.IsKeyDown(Keys.S) == true)
+                //{
+                //    mSpeed.Y = WIZARD_SPEED;
+                //    mDirection.Y = MOVE_DOWN;
+                //}
             }
         }
     }

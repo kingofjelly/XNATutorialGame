@@ -30,6 +30,11 @@ namespace XNATutorialGame
         //used internally of methods, to avoid objects going off screen
         public const int screenWidth = 1280;
         public const int screenHeight = 800;
+        public int fallingObtPositX;
+        public int wizardPositX;
+        public int fallingObtPositY;
+        public int wizardPositY;
+        public int positionYDifference;
 
 
 
@@ -107,11 +112,31 @@ namespace XNATutorialGame
             // TODO: Add your update logic here
 
             mWizardSprite.Update(gameTime);
+
             mFallingObjectSprite.Update(gameTime);
+
             for (int i = 0; i < fallingObjectsArray.Length; i++)
             {
                 fallingObjectsArray[i].Update(gameTime);
             }
+
+            //NOW THROW IN LOGIC FOR IF IN PROXIMITY. Another loop again
+
+            //for (int i = 0; i < fallingObjectsArray.Length; i++)
+            //{
+            //    fallingObtPositX = (int)fallingObjectsArray[i].Position.Y;
+            //    wizardPositX = (int)mWizardSprite.Position.Y;
+            //    fallingObtPositY = (int)fallingObjectsArray[i].Position.Y;
+            //    wizardPositY = (int)mWizardSprite.Position.Y;
+            //    positionYDifference = (int)fallingObjectsArray[i].Position.Y - (int)mWizardSprite.Position.Y;
+            //    if (positionYDifference < 50)
+            //    {
+            //        fallingObjectsArray[i].Position.Y = -7;//thow speed in reverse
+            //    }
+
+            //}
+
+            //LOGIC GOES HERE FOR WORKING OUT IF OBJECTS ARE CLOSE TO EACHOTHER!
             base.Update(gameTime);
         }
 

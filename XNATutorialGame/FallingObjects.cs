@@ -75,20 +75,31 @@ namespace XNATutorialGame
             KeyboardState aCurrentKeyboardState = Keyboard.GetState();            
             UpdateMovement();
             base.Update(theGameTime, mSpeed, mDirection);
+            //mWizardSprite position.X
         }
 
         //UpdatePosition
 
         private void UpdateMovement()//updates movement. needed for positon and drawing
         {
-
+            //simply pushes sprite down
             mSpeed = Vector2.Zero;
             mDirection = Vector2.Zero;
             //here, opposed to if key is pressed, update movemnt every sec
             mSpeed.Y = WIZARD_SPEED;
-            mDirection.Y = MOVE_DOWN;
+            mDirection.Y = MOVE_DOWN; //this will decrease by 1 for each iteration
 
            
+        }
+
+        private void CheckForProximityToWizard()
+        {
+            //method to check whether it's close to wizard. Do based on y Axis proximity and X axis? if x axis / give or take (sprite size
+            //and x axis = within 50? push up?
+
+            
+
+
         }
        
     }

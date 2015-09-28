@@ -8,7 +8,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace XNATutorialGame
 {
-   
+   //note: for simple class creation, you could actually do away with scale and Size. You literally just need
+   //1: Starter position
+   //2: Sprite Texture
+   //3: Speed maybe?
 
     class Sprite
     {
