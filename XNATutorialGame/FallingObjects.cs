@@ -34,8 +34,8 @@ namespace XNATutorialGame
 
         GameWideMethods GWM = new GameWideMethods();
 
-        Vector2 mDirection = Vector2.Zero;
-        Vector2 mSpeed = Vector2.Zero;
+        public Vector2 mDirection = Vector2.Zero;
+        public Vector2 mSpeed = Vector2.Zero;
         
 
         public void LoadContent(ContentManager theContentManager)

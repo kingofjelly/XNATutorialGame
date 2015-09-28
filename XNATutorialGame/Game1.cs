@@ -35,7 +35,7 @@ namespace XNATutorialGame
         public int fallingObtPositY;
         public int wizardPositY;
         public int positionYDifference;
-
+        Color backgroundColor = Color.Aquamarine;//change color to prove intersect
 
 
         public Game1()
@@ -118,7 +118,17 @@ namespace XNATutorialGame
             for (int i = 0; i < fallingObjectsArray.Length; i++)
             {
                 fallingObjectsArray[i].Update(gameTime);
+                //collision. DOESN'T WORK! MAYBE REWORK MY CLASSES?
+                if (mWizardSprite.Size.Intersects(fallingObjectsArray[i].Size))
+                {
+                    //what do now? Reverse speed?
+                    backgroundColor = Color.Red;
+                }
             }
+
+           
+
+            //wizard.size = rectangle
 
             //NOW THROW IN LOGIC FOR IF IN PROXIMITY. Another loop again
 
