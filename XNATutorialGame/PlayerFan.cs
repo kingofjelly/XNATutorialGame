@@ -51,16 +51,69 @@ namespace XNATutorialGame
             //playerHitbox = new Rectangle(0, 0, (int)(playerTexture.Width), (int)(playerTexture.Height));
         }
         //update
-        public void Update(GameTime theGameTime, Vector2 theSpeed, Vector2 theDirection)
+        public void Update(GameTime theGameTime)
         {
             //calculation means : Cow position = cow position + sum of the following
-            playerPosition += theDirection * theSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;
+            KeyboardState aCurrentKeyboardState = Keyboard.GetState();
+            UpdateMovement(aCurrentKeyboardState);
+            playerPosition += mDirection * mSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;
             //then run method to update playerHitBox, based on info above
         }
         //draw
         public void Draw(SpriteBatch theSpriteBatch)
         {           
             theSpriteBatch.Draw(playerTexture, playerPosition, Color.White);
+        }
+
+        private void UpdateMovement(KeyboardState aCurrentKeyboardState)//updates movement. needed for positon and drawing
+        {
+            if (mCurrentState == State.Walking)
+            {
+                mSpeed = Vector2.Zero;
+                mDirection = Vector2.Zero;
+                if (playerPosition.X > 0) //0 is window  length. x axis
+                {
+                    if (aCurrentKeyboardState.IsKeyDown(Keys.Left) == true || aCurrentKeyboardState.IsKeyDown(Keys.A) == true)
+                    {
+                        mSpeed.X = WIZARD_SPEED;
+                        mDirection.X = MOVE_LEFT;
+                    }
+
+                }
+
+                else if (playerPosition.X == 0)
+                {
+
+                    mSpeed.X = 0;//set speed to 0.
+
+                }
+
+
+                if (playerPosition.X < 1080)//sprite is 200 wide
+                {
+                    if (aCurrentKeyboardState.IsKeyDown(Keys.Right) == true || aCurrentKeyboardState.IsKeyDown(Keys.D) == true)
+                    {
+                        mSpeed.X = WIZARD_SPEED;
+                        mDirection.X = MOVE_RIGHT;
+                    }
+                }
+                else if (playerPosition.X == 1080) //not 1280, due to sprite length of 200 pix
+                {
+                    mSpeed.X = 0;
+                }
+
+                //TEMP DISABLE UP DOWN. DON'T NEED FOR WIZARD SPRITE
+                if (aCurrentKeyboardState.IsKeyDown(Keys.Up) == true || aCurrentKeyboardState.IsKeyDown(Keys.W) == true)
+                {
+                    mSpeed.Y = WIZARD_SPEED;
+                    mDirection.Y = MOVE_UP;
+                }
+                else if (aCurrentKeyboardState.IsKeyDown(Keys.Down) == true || aCurrentKeyboardState.IsKeyDown(Keys.S) == true)
+                {
+                    mSpeed.Y = WIZARD_SPEED;
+                    mDirection.Y = MOVE_DOWN;
+                }
+            }
         }
     }
 }

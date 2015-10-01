@@ -105,7 +105,8 @@ namespace XNATutorialGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here          
+            // TODO: Add your update logic here  
+            mPlayerSprite.Update(gameTime);
             mCowSprite.Update(gameTime);
             base.Update(gameTime);
         }
