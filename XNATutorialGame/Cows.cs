@@ -13,12 +13,19 @@ namespace XNATutorialGame
         //vector for position
         //texture 2d for texture
         //speed?
-        public Vector2 cowPosition = new Vector2(0, 0);//position of cow
+        public Vector2 cowPosition = new Vector2(540, 0);//position of cow
         private Texture2D cowSpriteTexture;//cow texture
         string cowAssetName;
         Rectangle cowHitbox; //hitbox for my cow              
 
-        
+        //used for updating object falling down
+        public Vector2 mDirection = Vector2.Zero;
+        public Vector2 mSpeed = Vector2.Zero;
+
+        //variables for controlling descent and ascent
+        const int COW_SPEED = 160;
+        const int MOVE_UP = -1;
+        const int MOVE_DOWN = 1;
 
         //load
         public void LoadContent(ContentManager theContentManager, string theAssetName)
@@ -29,30 +36,30 @@ namespace XNATutorialGame
             //cowHitbox = new Rectangle(0, 0, (int)(cowTexture.Width), (int)(cowTexture.Height));
         }
         //update
-        public void Update(GameTime theGameTime, Vector2 theSpeed, Vector2 theDirection)
+        //public void Update(GameTime theGameTime, Vector2 theSpeed, Vector2 theDirection)
+        public void Update(GameTime theGameTime)
         {
             //calculation means : Cow position = cow position + sum of the following
-            cowPosition += theDirection * theSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;
+            //cowPosition += theDirection * theSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;
             UpdateMovement();//makes it just fall down screen
+            cowPosition += mDirection * mSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;
+            
 
         }
         //draw
         public void Draw(SpriteBatch theSpriteBatch)
-        {
-            //theSpriteBatch.Draw(cowTexture, cowPosition,
-            //    new Rectangle(0, 0, cowTexture.Width, cowTexture.Height),
-            //    Color.White, 0.0f, Vector2.Zero, 0, SpriteEffects.None, 0);
+        {            
             theSpriteBatch.Draw(cowSpriteTexture, cowPosition, Color.White);
         }
 
         private void UpdateMovement()//updates movement. needed for positon and drawing
         {
-            ////simply pushes sprite down
-            //mSpeed = Vector2.Zero;
-            //mDirection = Vector2.Zero;
-            ////here, opposed to if key is pressed, update movemnt every sec
-            //mSpeed.Y = WIZARD_SPEED;
-            //mDirection.Y = MOVE_DOWN; //this will decrease by 1 for each iteration
+            //simply pushes sprite down
+            mSpeed = Vector2.Zero;
+            mDirection = Vector2.Zero;
+            //here, opposed to if key is pressed, update movemnt every sec
+            mSpeed.Y = COW_SPEED;
+            mDirection.Y = MOVE_DOWN; //this will decrease by 1 for each iteration
 
 
         }

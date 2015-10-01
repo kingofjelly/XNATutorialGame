@@ -16,7 +16,7 @@ namespace XNATutorialGame
         //vector for position
         //texture 2d for texture
         //speed?
-        Vector2 playerPosition = new Vector2(0, 0);//position of cow
+        Vector2 playerPosition = new Vector2(540, 540);//position of player    X, Y
         Texture2D playerTexture;//cow texture
         string playerAssetName;
         Rectangle playerHitbox; //hitbox for my cow
@@ -59,10 +59,7 @@ namespace XNATutorialGame
         }
         //draw
         public void Draw(SpriteBatch theSpriteBatch)
-        {
-            //theSpriteBatch.Draw(playerTexture, playerPosition,
-            //    new Rectangle(0, 0, playerTexture.Width, playerTexture.Height),
-            //    Color.White, 0.0f, Vector2.Zero, 0, SpriteEffects.None, 0);
+        {           
             theSpriteBatch.Draw(playerTexture, playerPosition, Color.White);
         }
     }

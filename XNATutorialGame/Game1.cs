@@ -23,12 +23,12 @@ namespace XNATutorialGame
         //for cow class. position and texture
 
         //COW VARIABLES
-        Vector2 mPosition = new Vector2(250, 100);//this basically is x and y co-ordinates. Just called Vector2.
+       
         Texture2D mCowTexture;//Texture2D is a 2d image                
         Cows mCowSprite;
 
         //PLAYER VARIABLES:
-        Vector2 mPlayerPosition = new Vector2(600, 640);
+        
         Texture2D mPlayerTexture;
         PlayerFan mPlayerSprite;
         
@@ -106,7 +106,7 @@ namespace XNATutorialGame
                 this.Exit();
 
             // TODO: Add your update logic here          
-        
+            mCowSprite.Update(gameTime);
             base.Update(gameTime);
         }
 
