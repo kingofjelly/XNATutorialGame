@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNATutorialGame
 {
-    class PlayerFan
+    public class PlayerFan
     {
         //this is the class, for the object which the player will be controlling
         //vector for position
@@ -20,7 +20,7 @@ namespace XNATutorialGame
         Texture2D playerTexture;//cow texture
         string playerAssetName;
         Rectangle playerHitbox; //hitbox for my cow
-
+        //200 x 200 for height x width
         
         const int START_POSITION_X = 640;//X IS HORIZONTAL. Y IS VERTICAL!!!!
         const int START_POSITION_Y = 600;
@@ -29,6 +29,7 @@ namespace XNATutorialGame
         const int MOVE_DOWN = 1;
         const int MOVE_LEFT = -2;
         const int MOVE_RIGHT = 2;
+        public Rectangle playerBoundary;
 
         enum State
         {
@@ -54,6 +55,7 @@ namespace XNATutorialGame
         public void Update(GameTime theGameTime)
         {
             //calculation means : Cow position = cow position + sum of the following
+            playerBoundary = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, 200, 200);
             KeyboardState aCurrentKeyboardState = Keyboard.GetState();
             UpdateMovement(aCurrentKeyboardState);
             playerPosition += mDirection * mSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;

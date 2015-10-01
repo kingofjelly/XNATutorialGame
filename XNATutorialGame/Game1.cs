@@ -23,7 +23,7 @@ namespace XNATutorialGame
         //for cow class. position and texture
 
         //COW VARIABLES
-       
+        
         Texture2D mCowTexture;//Texture2D is a 2d image                
         Cows mCowSprite;
 
@@ -31,6 +31,10 @@ namespace XNATutorialGame
         
         Texture2D mPlayerTexture;
         PlayerFan mPlayerSprite;
+
+        //movement for falling object
+        const int MOVE_UP = -1;
+        const int MOVE_DOWN = 1;
         
       
         //used internally of methods, to avoid objects going off screen
@@ -108,6 +112,7 @@ namespace XNATutorialGame
             // TODO: Add your update logic here  
             mPlayerSprite.Update(gameTime);
             mCowSprite.Update(gameTime);
+            checkIfIntersect();
             base.Update(gameTime);
         }
 
@@ -128,6 +133,16 @@ namespace XNATutorialGame
 
 
             base.Draw(gameTime);
+        }
+
+        public void checkIfIntersect()
+        {
+            //my own method, to check if intersect happens
+            if (mPlayerSprite.playerBoundary.Intersects(mCowSprite.cowBoundary))
+            {
+                //if it intersects, slow speed of cow obj
+                mCowSprite.MOVEMENT = MOVE_UP;
+            }
         }
     }
 }

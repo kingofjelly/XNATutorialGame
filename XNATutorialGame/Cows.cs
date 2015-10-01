@@ -8,11 +8,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace XNATutorialGame
 {
-    class Cows
+    public class Cows
     {
         //vector for position
         //texture 2d for texture
         //speed?
+
+        //91 x 91 for height x width
+
         public Vector2 cowPosition = new Vector2(540, 0);//position of cow
         private Texture2D cowSpriteTexture;//cow texture
         string cowAssetName;
@@ -21,11 +24,19 @@ namespace XNATutorialGame
         //used for updating object falling down
         public Vector2 mDirection = Vector2.Zero;
         public Vector2 mSpeed = Vector2.Zero;
+        //testing float
+        public float Speed = 10;
 
         //variables for controlling descent and ascent
         const int COW_SPEED = 160;
+        public int MOVEMENT = MOVE_DOWN;//initializaes it as descending
         const int MOVE_UP = -1;
         const int MOVE_DOWN = 1;
+        private int reverseTimer;
+        //this is a special integer I'm creating. When intersect happens, this is triggerd and counts down with each update. When it hits 0, direction flips again
+        //and then the sprite descends again
+
+        public Rectangle cowBoundary;
 
         //load
         public void LoadContent(ContentManager theContentManager, string theAssetName)
@@ -42,7 +53,9 @@ namespace XNATutorialGame
             //calculation means : Cow position = cow position + sum of the following
             //cowPosition += theDirection * theSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;
             UpdateMovement();//makes it just fall down screen
+            //cowPosition += mDirection * mSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;
             cowPosition += mDirection * mSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;
+            cowBoundary = new Rectangle((int)cowPosition.X, (int)cowPosition.Y, 91, 91);
             
 
         }
@@ -59,9 +72,14 @@ namespace XNATutorialGame
             mDirection = Vector2.Zero;
             //here, opposed to if key is pressed, update movemnt every sec
             mSpeed.Y = COW_SPEED;
-            mDirection.Y = MOVE_DOWN; //this will decrease by 1 for each iteration
+            mDirection.Y = MOVEMENT; //this will decrease by 1 for each iteration
 
 
+        }
+
+        private void BounceOffWalls()
+        {
+            //another cow class method I'm making, which means if it strikes the bottom or top, it reverses
         }
     }
 }
