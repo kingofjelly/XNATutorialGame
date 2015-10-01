@@ -31,6 +31,9 @@ namespace XNATutorialGame
         const int MOVE_UP = -1;
         const int MOVE_DOWN = 1;
         const int MaximumTimeLeft = 500;
+        //add my own variable for testing collision purposes
+        public Rectangle fallingObjectBox = new Rectangle(START_POSITION_X, START_POSITION_Y, 50, 100);
+
 
         GameWideMethods GWM = new GameWideMethods();
 

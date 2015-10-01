@@ -13,7 +13,7 @@ namespace XNATutorialGame
    //2: Sprite Texture
    //3: Speed maybe?
 
-    class Sprite
+    public class Sprite
     {
        
         public Vector2 Position = new Vector2(0, 0);//position for this class objects. Accessible externally.

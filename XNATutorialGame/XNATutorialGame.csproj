@@ -84,8 +84,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cows.cs" />
     <Compile Include="FallingObjects.cs" />
     <Compile Include="GameWideMethods.cs" />
+    <Compile Include="PlayerFan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />

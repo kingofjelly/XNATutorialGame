@@ -20,21 +20,23 @@ namespace XNATutorialGame
     {
         GraphicsDeviceManager graphics;//XNA VARIABLES
         SpriteBatch spriteBatch;
-        /*
-        Vector2 mPosition = new Vector2(0, 0);//this basically is x and y co-ordinates. Just called Vector2.
-        Texture2D mSpriteTexture;//Texture2D is a 2d image
-         */
-        Wizard mWizardSprite;//gives Wizard an alias?
-        FallingObjects mFallingObjectSprite;
-        FallingObjects[] fallingObjectsArray = new FallingObjects[3];
+        //for cow class. position and texture
+
+        //COW VARIABLES
+        Vector2 mPosition = new Vector2(250, 100);//this basically is x and y co-ordinates. Just called Vector2.
+        Texture2D mCowTexture;//Texture2D is a 2d image                
+        Cows mCowSprite;
+
+        //PLAYER VARIABLES:
+        Vector2 mPlayerPosition = new Vector2(600, 640);
+        Texture2D mPlayerTexture;
+        PlayerFan mPlayerSprite;
+        
+      
         //used internally of methods, to avoid objects going off screen
         public const int screenWidth = 1280;
         public const int screenHeight = 800;
-        public int fallingObtPositX;
-        public int wizardPositX;
-        public int fallingObtPositY;
-        public int wizardPositY;
-        public int positionYDifference;
+       
         Color backgroundColor = Color.Aquamarine;//change color to prove intersect
 
 
@@ -57,12 +59,10 @@ namespace XNATutorialGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            mWizardSprite = new Wizard();
-            mFallingObjectSprite = new FallingObjects();
-            for (int i = 0; i < fallingObjectsArray.Length; i++)
-            {
-                fallingObjectsArray[i] = new FallingObjects();
-            }
+           
+            mCowSprite = new Cows();//initialise instance
+            mPlayerSprite = new PlayerFan();
+           
 
 
 
@@ -79,14 +79,10 @@ namespace XNATutorialGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            //mSpriteTexture = this.Content.Load<Texture2D>("SquareGuy");
-
-            mWizardSprite.LoadContent(this.Content);
-            mFallingObjectSprite.LoadContent(this.Content);
-            for (int i = 0; i < fallingObjectsArray.Length; i++)
-            {
-                fallingObjectsArray[i].LoadContent(this.Content);
-            }
+            mCowSprite.LoadContent(this.Content, "SquareGuy");//call loadcontent method. this.Content, because you pass in Gam1 contentmanager
+            mPlayerSprite.LoadContent(this.Content, "WizardSquare");//call loadcontent method. this.Content, because you pass in Gam1 contentmanager
+            
+          
         }
 
         /// <summary>
@@ -109,44 +105,8 @@ namespace XNATutorialGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
-
-            mWizardSprite.Update(gameTime);
-
-            mFallingObjectSprite.Update(gameTime);
-
-            for (int i = 0; i < fallingObjectsArray.Length; i++)
-            {
-                fallingObjectsArray[i].Update(gameTime);
-                //collision. DOESN'T WORK! MAYBE REWORK MY CLASSES?
-                if (mWizardSprite.Size.Intersects(fallingObjectsArray[i].Size))
-                {
-                    //what do now? Reverse speed?
-                    backgroundColor = Color.Red;
-                }
-            }
-
-           
-
-            //wizard.size = rectangle
-
-            //NOW THROW IN LOGIC FOR IF IN PROXIMITY. Another loop again
-
-            //for (int i = 0; i < fallingObjectsArray.Length; i++)
-            //{
-            //    fallingObtPositX = (int)fallingObjectsArray[i].Position.Y;
-            //    wizardPositX = (int)mWizardSprite.Position.Y;
-            //    fallingObtPositY = (int)fallingObjectsArray[i].Position.Y;
-            //    wizardPositY = (int)mWizardSprite.Position.Y;
-            //    positionYDifference = (int)fallingObjectsArray[i].Position.Y - (int)mWizardSprite.Position.Y;
-            //    if (positionYDifference < 50)
-            //    {
-            //        fallingObjectsArray[i].Position.Y = -7;//thow speed in reverse
-            //    }
-
-            //}
-
-            //LOGIC GOES HERE FOR WORKING OUT IF OBJECTS ARE CLOSE TO EACHOTHER!
+            // TODO: Add your update logic here          
+        
             base.Update(gameTime);
         }
 
@@ -160,14 +120,9 @@ namespace XNATutorialGame
 
             // TODO: Add your drawing code here
             //Spritebatch object is auto created when windows game is made. this is what's used to draw 2d objects to screen. This needs to be begun and ended.
-            spriteBatch.Begin();
-            //spriteBatch.Draw(mSpriteTexture, mPosition, Color.White);
-            mWizardSprite.Draw(this.spriteBatch);
-            mFallingObjectSprite.Draw(this.spriteBatch);
-            for (int i = 0; i < fallingObjectsArray.Length; i++)
-            {
-                fallingObjectsArray[i].Draw(this.spriteBatch);
-            }
+            spriteBatch.Begin();            
+            mCowSprite.Draw(this.spriteBatch);
+            mPlayerSprite.Draw(this.spriteBatch);
             spriteBatch.End();
 
 

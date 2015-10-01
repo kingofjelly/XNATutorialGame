@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace XNATutorialGame
 {
-    class Wizard : Sprite //indicates it inherits sprite class. Will need to provide all sprite properties
+    public class Wizard : Sprite //indicates it inherits sprite class. Will need to provide all sprite properties
     {
         const string WIZARD_ASSETNAME = "WizardSquare";
         const int START_POSITION_X = 640;//X IS HORIZONTAL. Y IS VERTICAL!!!!
@@ -93,16 +93,16 @@ namespace XNATutorialGame
                 }
 
                 //TEMP DISABLE UP DOWN. DON'T NEED FOR WIZARD SPRITE
-                //if (aCurrentKeyboardState.IsKeyDown(Keys.Up) == true || aCurrentKeyboardState.IsKeyDown(Keys.W) == true)
-                //{
-                //    mSpeed.Y = WIZARD_SPEED;
-                //    mDirection.Y = MOVE_UP;
-                //}
-                //else if (aCurrentKeyboardState.IsKeyDown(Keys.Down) == true || aCurrentKeyboardState.IsKeyDown(Keys.S) == true)
-                //{
-                //    mSpeed.Y = WIZARD_SPEED;
-                //    mDirection.Y = MOVE_DOWN;
-                //}
+                if (aCurrentKeyboardState.IsKeyDown(Keys.Up) == true || aCurrentKeyboardState.IsKeyDown(Keys.W) == true)
+                {
+                    mSpeed.Y = WIZARD_SPEED;
+                    mDirection.Y = MOVE_UP;
+                }
+                else if (aCurrentKeyboardState.IsKeyDown(Keys.Down) == true || aCurrentKeyboardState.IsKeyDown(Keys.S) == true)
+                {
+                    mSpeed.Y = WIZARD_SPEED;
+                    mDirection.Y = MOVE_DOWN;
+                }
             }
         }
     }
