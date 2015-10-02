@@ -81,5 +81,7 @@ namespace XNATutorialGame
         {
             //another cow class method I'm making, which means if it strikes the bottom or top, it reverses
         }
+
+
     }
 }

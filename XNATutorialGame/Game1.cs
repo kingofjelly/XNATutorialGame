@@ -31,6 +31,7 @@ namespace XNATutorialGame
         
         Texture2D mPlayerTexture;
         PlayerFan mPlayerSprite;
+        PlayerScore mPlayerScoreSprite;
 
         //movement for falling object
         const int MOVE_UP = -1;
@@ -66,6 +67,7 @@ namespace XNATutorialGame
            
             mCowSprite = new Cows();//initialise instance
             mPlayerSprite = new PlayerFan();
+            mPlayerScoreSprite = new PlayerScore();
            
 
 
@@ -85,6 +87,9 @@ namespace XNATutorialGame
             // TODO: use this.Content to load your game content here
             mCowSprite.LoadContent(this.Content, "SquareGuy");//call loadcontent method. this.Content, because you pass in Gam1 contentmanager
             mPlayerSprite.LoadContent(this.Content, "WizardSquare");//call loadcontent method. this.Content, because you pass in Gam1 contentmanager
+
+            //load font
+            mPlayerScoreSprite.LoadContent(this.Content, "DefaultFont");
             
           
         }
@@ -113,6 +118,9 @@ namespace XNATutorialGame
             mPlayerSprite.Update(gameTime);
             mCowSprite.Update(gameTime);
             checkIfIntersect();
+            reverseFallingSpriteDirection();
+            //as player score isn't reflective of time the game has gone on yet, doesn't need to be called. it's
+            //interacted with, by another method
             base.Update(gameTime);
         }
 
@@ -129,6 +137,7 @@ namespace XNATutorialGame
             spriteBatch.Begin();            
             mCowSprite.Draw(this.spriteBatch);
             mPlayerSprite.Draw(this.spriteBatch);
+            mPlayerScoreSprite.Draw(this.spriteBatch);
             spriteBatch.End();
 
 
@@ -142,7 +151,19 @@ namespace XNATutorialGame
             {
                 //if it intersects, slow speed of cow obj
                 mCowSprite.MOVEMENT = MOVE_UP;
+                mPlayerScoreSprite.score += 100;//increase by 100. basically means score add 100 
             }
+        }
+
+        public void reverseFallingSpriteDirection()
+        {
+            //reverse falling sprite direction. Means if it hits the roof, it starts descending again.
+            //It will hit the roof, after the fan blasts it up
+            if (mCowSprite.cowPosition.Y == 0)
+            {
+                mCowSprite.MOVEMENT = MOVE_DOWN;
+            }
+
         }
     }
 }

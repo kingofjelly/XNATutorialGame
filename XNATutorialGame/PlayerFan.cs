@@ -55,7 +55,7 @@ namespace XNATutorialGame
         public void Update(GameTime theGameTime)
         {
             //calculation means : Cow position = cow position + sum of the following
-            playerBoundary = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, 200, 200);
+            playerBoundary = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, 100, 100);//200, 200 is widtth and height. first to are position
             KeyboardState aCurrentKeyboardState = Keyboard.GetState();
             UpdateMovement(aCurrentKeyboardState);
             playerPosition += mDirection * mSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;
