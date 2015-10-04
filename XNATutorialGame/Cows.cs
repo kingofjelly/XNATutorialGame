@@ -20,6 +20,8 @@ namespace XNATutorialGame
         private Texture2D cowSpriteTexture;//cow texture
         string cowAssetName;
         Rectangle cowHitbox; //hitbox for my cow              
+        
+
 
         //used for updating object falling down
         public Vector2 mDirection = Vector2.Zero;

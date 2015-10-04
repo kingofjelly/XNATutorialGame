@@ -28,6 +28,16 @@
       <Output>C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\DefaultFont.xnb</Output>
       <Time>2015-10-02T21:31:50.6630714+01:00</Time>
     </Item>
+    <Item>
+      <Source>Chiptune_Artic_Odyssey.mp3</Source>
+      <Name>Chiptune_Artic_Odyssey</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\Chiptune_Artic_Odyssey.xnb</Output>
+      <Extra>C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\Chiptune_Artic_Odyssey.wma</Extra>
+      <Time>2015-10-04T14:52:02.806346+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

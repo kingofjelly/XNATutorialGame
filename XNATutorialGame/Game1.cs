@@ -26,12 +26,15 @@ namespace XNATutorialGame
         
         Texture2D mCowTexture;//Texture2D is a 2d image                
         Cows mCowSprite;
+        GameMusicSounds mMusicSounds;
+        List<Cows> mCowSprites = new List<Cows>();
 
         //PLAYER VARIABLES:
-        
+        //Don't know why the variables below are here
         Texture2D mPlayerTexture;
         PlayerFan mPlayerSprite;
         PlayerScore mPlayerScoreSprite;
+
 
         //movement for falling object
         const int MOVE_UP = -1;
@@ -41,7 +44,8 @@ namespace XNATutorialGame
         //used internally of methods, to avoid objects going off screen
         public const int screenWidth = 1280;
         public const int screenHeight = 800;
-       
+
+               
         Color backgroundColor = Color.Aquamarine;//change color to prove intersect
 
 
@@ -68,6 +72,7 @@ namespace XNATutorialGame
             mCowSprite = new Cows();//initialise instance
             mPlayerSprite = new PlayerFan();
             mPlayerScoreSprite = new PlayerScore();
+            mMusicSounds = new GameMusicSounds();
            
 
 
@@ -90,6 +95,10 @@ namespace XNATutorialGame
 
             //load font
             mPlayerScoreSprite.LoadContent(this.Content, "DefaultFont");
+
+            //load song
+            mMusicSounds.LoadContent(this.Content, "Chiptune_Artic_Odyssey");
+            
             
           
         }

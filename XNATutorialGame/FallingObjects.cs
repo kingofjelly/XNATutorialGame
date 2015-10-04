@@ -44,7 +44,7 @@ namespace XNATutorialGame
         public void LoadContent(ContentManager theContentManager)
         {
             //positions could be decided by RNG. Could also decide in here if fallingObArray < 4 in size, crete, else don't this run
-            int positionChoice = GWM.randomNumer();
+            int positionChoice = GWM.randomNumer(4);
 
             if (positionChoice == 1)
             {
