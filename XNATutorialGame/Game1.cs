@@ -73,6 +73,7 @@ namespace XNATutorialGame
             mPlayerSprite = new PlayerFan();
             mPlayerScoreSprite = new PlayerScore();
             mMusicSounds = new GameMusicSounds();
+
            
 
 
