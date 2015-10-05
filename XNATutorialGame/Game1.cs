@@ -27,7 +27,7 @@ namespace XNATutorialGame
         Texture2D mCowTexture;//Texture2D is a 2d image                
         Cows mCowSprite;
         GameMusicSounds mMusicSounds;
-        List<Cows> mCowSprites = new List<Cows>();
+        List<Cows> mCowSprites = new List<Cows>();//initialize as new list;//DOESN'T NEED INITIALIZING
 
         //PLAYER VARIABLES:
         //Don't know why the variables below are here
@@ -46,6 +46,9 @@ namespace XNATutorialGame
         public const int screenHeight = 800;
 
                
+        //int used for timing whether another obj should be spawned. could spawn tons in a line. will prove correct
+        private int spawnTimer = 0;
+
         Color backgroundColor = Color.Aquamarine;//change color to prove intersect
 
 
@@ -73,7 +76,8 @@ namespace XNATutorialGame
             mPlayerSprite = new PlayerFan();
             mPlayerScoreSprite = new PlayerScore();
             mMusicSounds = new GameMusicSounds();
-
+            
+            
            
 
 
@@ -98,7 +102,18 @@ namespace XNATutorialGame
             mPlayerScoreSprite.LoadContent(this.Content, "DefaultFont");
 
             //load song
-            mMusicSounds.LoadContent(this.Content, "Chiptune_Artic_Odyssey");
+            //mMusicSounds.LoadContent(this.Content, "Chiptune_Artic_Odyssey");
+
+            //load list?
+            //DONT NEED TO LOAD HERE. I LOAD AS I ADD TO LIST
+            //foreach (Cows mCowInList in mCowSprites)
+            //{
+            //    //for each cow in list, LOAD
+            //    mCowInList.LoadContent(this.Content, "SquareGuy");
+            //}
+            
+            
+            
             
             
           
@@ -125,10 +140,19 @@ namespace XNATutorialGame
                 this.Exit();
 
             // TODO: Add your update logic here  
+            //RemoveFallenCowFromList();
             mPlayerSprite.Update(gameTime);
             mCowSprite.Update(gameTime);
             checkIfIntersect();
-            reverseFallingSpriteDirection();
+            //reverseFallingSpriteDirection();
+            spawnTimer++;
+            checkIfCowShouldSpawn();
+            foreach (Cows mCowInList in mCowSprites)
+            {
+                //for each cow in list, LOAD
+                mCowInList.Update(gameTime);
+            }
+            
             //as player score isn't reflective of time the game has gone on yet, doesn't need to be called. it's
             //interacted with, by another method
             base.Update(gameTime);
@@ -145,9 +169,16 @@ namespace XNATutorialGame
             // TODO: Add your drawing code here
             //Spritebatch object is auto created when windows game is made. this is what's used to draw 2d objects to screen. This needs to be begun and ended.
             spriteBatch.Begin();            
-            mCowSprite.Draw(this.spriteBatch);
+            //mCowSprite.Draw(this.spriteBatch);
             mPlayerSprite.Draw(this.spriteBatch);
             mPlayerScoreSprite.Draw(this.spriteBatch);
+
+            //draw cow list
+            foreach (Cows mCowInList in mCowSprites)
+            {                
+                mCowInList.Draw(this.spriteBatch);
+            }
+
             spriteBatch.End();
 
 
@@ -157,23 +188,42 @@ namespace XNATutorialGame
         public void checkIfIntersect()
         {
             //my own method, to check if intersect happens
-            if (mPlayerSprite.playerBoundary.Intersects(mCowSprite.cowBoundary))
+            foreach (Cows mCowInList in mCowSprites)
             {
-                //if it intersects, slow speed of cow obj
-                mCowSprite.MOVEMENT = MOVE_UP;
-                mPlayerScoreSprite.score += 100;//increase by 100. basically means score add 100 
+                if (mPlayerSprite.playerBoundary.Intersects(mCowInList.cowBoundary))
+                {
+                    //if it intersects, slow speed of cow obj
+                    mCowInList.MOVEMENT = MOVE_UP;
+                    mPlayerScoreSprite.score += 100;//increase by 100. basically means score add 100 
+                }
             }
-        }
+          
+        }   
 
-        public void reverseFallingSpriteDirection()
+        public void checkIfCowShouldSpawn()
         {
-            //reverse falling sprite direction. Means if it hits the roof, it starts descending again.
-            //It will hit the roof, after the fan blasts it up
-            if (mCowSprite.cowPosition.Y == 0)
+            //if timer == 100. add cow. reset timer
+            if (spawnTimer == 100)
             {
-                mCowSprite.MOVEMENT = MOVE_DOWN;
+                Cows mCowInList = new Cows();
+                mCowInList.LoadContent(this.Content, "SquareGuy");
+                mCowSprites.Add(mCowInList);
+                spawnTimer = 0;//reset
             }
-
         }
+
+
+        public void RemoveFallenCowFromList()
+        {
+            foreach (Cows mCowInList in mCowSprites)
+            {
+                if (mCowInList.cowPosition.Y == 0)
+                {
+                    //if it intersects, slow speed of cow obj
+                    mCowSprites.Remove(mCowInList);
+                }
+            }
+        }
+       
     }
 }

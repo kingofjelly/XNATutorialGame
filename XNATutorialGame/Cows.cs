@@ -30,7 +30,7 @@ namespace XNATutorialGame
         public float Speed = 10;
 
         //variables for controlling descent and ascent
-        const int COW_SPEED = 160;
+        const int COW_SPEED = 320;//160
         public int MOVEMENT = MOVE_DOWN;//initializaes it as descending
         const int MOVE_UP = -1;
         const int MOVE_DOWN = 1;
@@ -44,6 +44,7 @@ namespace XNATutorialGame
         public void LoadContent(ContentManager theContentManager, string theAssetName)
         {
             cowSpriteTexture = theContentManager.Load<Texture2D>(theAssetName);
+            
             //sprite class doesn't have built in content manager, so needs one. It also needs name of asset that will be loaded
             //cowAssetName = theAssetName;
             //cowHitbox = new Rectangle(0, 0, (int)(cowTexture.Width), (int)(cowTexture.Height));
@@ -54,10 +55,16 @@ namespace XNATutorialGame
         {
             //calculation means : Cow position = cow position + sum of the following
             //cowPosition += theDirection * theSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;
+            
             UpdateMovement();//makes it just fall down screen
+            
             //cowPosition += mDirection * mSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;
             cowPosition += mDirection * mSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;
             cowBoundary = new Rectangle((int)cowPosition.X, (int)cowPosition.Y, 91, 91);
+            CowHitsFloor();
+            CowHitsRoof();
+            
+
             
 
         }
@@ -79,11 +86,26 @@ namespace XNATutorialGame
 
         }
 
-        private void BounceOffWalls()
+        public void CowHitsRoof()
         {
-            //another cow class method I'm making, which means if it strikes the bottom or top, it reverses
+            //reverse falling sprite direction. Means if it hits the roof, it starts descending again.
+            //It will hit the roof, after the fan blasts it up           
+
+            if (cowBoundary.Y == 0)
+            {
+                this.MOVEMENT = MOVE_DOWN;
+            }
+           
         }
-
-
+         public void CowHitsFloor()
+        {
+            //reverse falling sprite direction. Means if it hits the roof, it starts descending again.
+            //It will hit the roof, after the fan blasts it up           
+            if (cowBoundary.Y == 800 - 91)
+            {
+                this.MOVEMENT = MOVE_UP;
+            }
+                          
+        }
     }
 }
