@@ -152,6 +152,7 @@ namespace XNATutorialGame
                 //for each cow in list, LOAD
                 mCowInList.Update(gameTime);
             }
+            CowHitsFloor();
             
             //as player score isn't reflective of time the game has gone on yet, doesn't need to be called. it's
             //interacted with, by another method
@@ -212,6 +213,21 @@ namespace XNATutorialGame
             }
         }
 
+        public void CowHitsFloor()
+        {
+         //loops through cowSprite List. If its boundary intersects/equals floor, remove from list
+            for (int i = 0; i < mCowSprites.Count; i++)
+            {
+                if (mCowSprites[i].cowBoundary.Y == 800 - 91)
+                {
+                    //mCowInList.MOVEMENT = MOVE_UP;
+                    mCowSprites.RemoveAt(i);
+                }
+                
+            }
+           
+
+        }
 
         public void RemoveFallenCowFromList()
         {

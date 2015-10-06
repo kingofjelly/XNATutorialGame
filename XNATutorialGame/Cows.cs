@@ -61,7 +61,7 @@ namespace XNATutorialGame
             //cowPosition += mDirection * mSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;
             cowPosition += mDirection * mSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;
             cowBoundary = new Rectangle((int)cowPosition.X, (int)cowPosition.Y, 91, 91);
-            CowHitsFloor();
+            //CowHitsFloor();
             CowHitsRoof();
             
 
@@ -97,15 +97,15 @@ namespace XNATutorialGame
             }
            
         }
-         public void CowHitsFloor()
-        {
-            //reverse falling sprite direction. Means if it hits the roof, it starts descending again.
-            //It will hit the roof, after the fan blasts it up           
-            if (cowBoundary.Y == 800 - 91)
-            {
-                this.MOVEMENT = MOVE_UP;
-            }
+        // public void CowHitsFloor()
+        //{
+        //    //reverse falling sprite direction. Means if it hits the roof, it starts descending again.
+        //    //It will hit the roof, after the fan blasts it up           
+        //    if (cowBoundary.Y == 800 - 91)
+        //    {
+        //        this.MOVEMENT = MOVE_UP;
+        //    }
                           
-        }
+        //}
     }
 }
