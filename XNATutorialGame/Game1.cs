@@ -170,7 +170,10 @@ namespace XNATutorialGame
 
             // TODO: Add your update logic here  
 
-            //only update, when playing, or risk screwing score etc
+            //Default state = Main Menu.
+            //don't update unless playing, or you'll lose points/actions will happen behind the scenes
+
+            //only update, when playing, or risk screwing score etc. Flipped to playing if button selected
             if (currentGameState == GameState.Playing)
             {
 
@@ -189,7 +192,8 @@ namespace XNATutorialGame
             }
 
             //only update status if on main menu
-           
+            if (currentGameState == GameState.MainMenu)
+            {
                 mouseState = Mouse.GetState();
                 if (previousMouseState.LeftButton == ButtonState.Pressed &&
                     mouseState.LeftButton == ButtonState.Released)
@@ -199,11 +203,15 @@ namespace XNATutorialGame
 
                 previousMouseState = mouseState;
 
-                if (currentGameState == GameState.Exit)
-                {
-                    Exit();
-                }
+               
+            }
 
+            if (currentGameState == GameState.Exit)
+            {
+                this.Exit();
+            }
+
+          
             //i need a method for if on exit screen
 
             //as player score isn't reflective of time the game has gone on yet, doesn't need to be called. it's
@@ -311,10 +319,10 @@ namespace XNATutorialGame
             {
 
                 Rectangle startButtonRect = new Rectangle((int)startButtonPosition.X,
-                                               (int)startButtonPosition.Y, 100, 200);
+                                               (int)startButtonPosition.Y, 100, 20);
 
                 Rectangle exitButtonRect = new Rectangle((int)exitButtonPosition.X,
-                                               (int)exitButtonPosition.Y, 100, 200);
+                                               (int)exitButtonPosition.Y, 100, 20);
 
                 if (mouseRectangle.Intersects(startButtonRect))
                 {
@@ -324,10 +332,12 @@ namespace XNATutorialGame
                 }
                 else if (mouseRectangle.Intersects(exitButtonRect))
                 {
-                    currentGameState = GameState.Exit;
+                    currentGameState = GameState.Exit;//trying to get this working properly
                 }
 
             }
         }
+
+
     }
 }
