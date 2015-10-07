@@ -97,13 +97,18 @@ namespace XNATutorialGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-           
+
+            IsMouseVisible = true;
+
             mCowSprite = new Cows();//initialise instance
             mPlayerSprite = new PlayerFan();
             mPlayerScoreSprite = new PlayerScore();
             mMusicSounds = new GameMusicSounds();
 
+            startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 200);
+            exitButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 250);
 
+            GameState currentGameState = GameState.MainMenu;//when game loads, it's set to MainMenu
             //get the mouse state
             mouseState = Mouse.GetState();
             previousMouseState = mouseState;
@@ -164,20 +169,43 @@ namespace XNATutorialGame
                 this.Exit();
 
             // TODO: Add your update logic here  
-            
-            mPlayerSprite.Update(gameTime);
-            mCowSprite.Update(gameTime);
-            checkIfIntersect();
-            //reverseFallingSpriteDirection();
-            spawnTimer++;
-            checkIfCowShouldSpawn();
-            foreach (Cows mCowInList in mCowSprites)
+
+            //only update, when playing, or risk screwing score etc
+            if (currentGameState == GameState.Playing)
             {
-                //for each cow in list, LOAD
-                mCowInList.Update(gameTime);
+
+                mPlayerSprite.Update(gameTime);
+                mCowSprite.Update(gameTime);
+                checkIfIntersect();
+                //reverseFallingSpriteDirection();
+                spawnTimer++;
+                checkIfCowShouldSpawn();
+                foreach (Cows mCowInList in mCowSprites)
+                {
+                    //for each cow in list, LOAD
+                    mCowInList.Update(gameTime);
+                }
+                CowHitsFloor();
             }
-            CowHitsFloor();
-            
+
+            //only update status if on main menu
+           
+                mouseState = Mouse.GetState();
+                if (previousMouseState.LeftButton == ButtonState.Pressed &&
+                    mouseState.LeftButton == ButtonState.Released)
+                {
+                    MouseClicked(mouseState.X, mouseState.Y);
+                }
+
+                previousMouseState = mouseState;
+
+                if (currentGameState == GameState.Exit)
+                {
+                    Exit();
+                }
+
+            //i need a method for if on exit screen
+
             //as player score isn't reflective of time the game has gone on yet, doesn't need to be called. it's
             //interacted with, by another method
             base.Update(gameTime);
@@ -193,15 +221,28 @@ namespace XNATutorialGame
 
             // TODO: Add your drawing code here
             //Spritebatch object is auto created when windows game is made. this is what's used to draw 2d objects to screen. This needs to be begun and ended.
-            spriteBatch.Begin();            
-            //mCowSprite.Draw(this.spriteBatch);
-            mPlayerSprite.Draw(this.spriteBatch);
-            mPlayerScoreSprite.Draw(this.spriteBatch);
+            spriteBatch.Begin();
 
-            //draw cow list
-            foreach (Cows mCowInList in mCowSprites)
-            {                
-                mCowInList.Draw(this.spriteBatch);
+            if (currentGameState == GameState.Playing)
+            {
+                //mCowSprite.Draw(this.spriteBatch);
+                mPlayerSprite.Draw(this.spriteBatch);
+                mPlayerScoreSprite.Draw(this.spriteBatch);
+
+                //draw cow list
+                foreach (Cows mCowInList in mCowSprites)
+                {
+                    mCowInList.Draw(this.spriteBatch);
+                }
+            }
+
+            if (currentGameState == GameState.MainMenu)
+            {
+                //draw buttons etc
+                //draw the buttons
+                spriteBatch.Draw(startButton, startButtonPosition, Color.White);
+                //i'll make a button class too
+                spriteBatch.Draw(exitButton, exitButtonPosition, Color.White);
             }
 
             spriteBatch.End();
@@ -271,6 +312,34 @@ namespace XNATutorialGame
                 }
             }
         }
-       
+
+        public void MouseClicked(int x, int y)
+        {
+            //tracks mouse on menu. determines if game is played/where it goes
+            Rectangle mouseRectangle = new Rectangle(x, y, 10, 10);
+
+            //check start menu
+            if (currentGameState == GameState.MainMenu)
+            {
+
+                Rectangle startButtonRect = new Rectangle((int)startButtonPosition.X,
+                                               (int)startButtonPosition.Y, 100, 200);
+
+                Rectangle exitButtonRect = new Rectangle((int)exitButtonPosition.X,
+                                               (int)exitButtonPosition.Y, 100, 200);
+
+                if (mouseRectangle.Intersects(startButtonRect))
+                {
+                    //CurrentGameState = GameState.Loading;
+                    currentGameState = GameState.Playing;
+                    
+                }
+                else if (mouseRectangle.Intersects(exitButtonRect))
+                {
+                    currentGameState = GameState.Exit;
+                }
+
+            }
+        }
     }
 }
