@@ -1,5 +1,3 @@
-Content\SquareGuy.xnb
-Content\WizardSquare.xnb
 Content\DefaultFont.xnb
 Content\Chiptune_Artic_Odyssey.xnb
 Content\Chiptune_Artic_Odyssey.wma

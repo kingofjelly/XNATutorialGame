@@ -4,8 +4,6 @@ C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\XNATut
 C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\XNATutorialGame.pdb
 C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\obj\x86\Debug\XNATutorialGame.exe
 C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\obj\x86\Debug\XNATutorialGame.pdb
-C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\SquareGuy.xnb
-C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\WizardSquare.xnb
 C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\DefaultFont.xnb
 C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\Chiptune_Artic_Odyssey.wma
 C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\Chiptune_Artic_Odyssey.xnb

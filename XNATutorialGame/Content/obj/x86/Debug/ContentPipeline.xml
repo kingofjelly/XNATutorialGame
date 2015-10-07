@@ -2,24 +2,6 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>SquareGuy.png</Source>
-      <Name>SquareGuy</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\SquareGuy.xnb</Output>
-      <Time>2015-09-15T19:09:48.2568515+01:00</Time>
-    </Item>
-    <Item>
-      <Source>WizardSquare.png</Source>
-      <Name>WizardSquare</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\WizardSquare.xnb</Output>
-      <Time>2015-09-26T11:57:47.976431+01:00</Time>
-    </Item>
-    <Item>
       <Source>DefaultFont.spritefont</Source>
       <Name>DefaultFont</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -36,7 +18,7 @@
       <Options>None</Options>
       <Output>C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\Chiptune_Artic_Odyssey.xnb</Output>
       <Extra>C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\Chiptune_Artic_Odyssey.wma</Extra>
-      <Time>2015-10-04T14:52:02.806346+01:00</Time>
+      <Time>2015-10-07T20:41:30.1117128+01:00</Time>
     </Item>
     <Item>
       <Source>cowSprite.png</Source>

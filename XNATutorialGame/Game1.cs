@@ -299,19 +299,7 @@ namespace XNATutorialGame
             }
            
 
-        }
-
-        public void RemoveFallenCowFromList()
-        {
-            foreach (Cows mCowInList in mCowSprites)
-            {
-                if (mCowInList.cowPosition.Y == 0)
-                {
-                    //if it intersects, slow speed of cow obj
-                    mCowSprites.Remove(mCowInList);
-                }
-            }
-        }
+        }     
 
         public void MouseClicked(int x, int y)
         {
