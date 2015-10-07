@@ -38,6 +38,42 @@
       <Extra>C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\Chiptune_Artic_Odyssey.wma</Extra>
       <Time>2015-10-04T14:52:02.806346+01:00</Time>
     </Item>
+    <Item>
+      <Source>cowSprite.png</Source>
+      <Name>cowSprite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\cowSprite.xnb</Output>
+      <Time>2015-10-06T20:40:43.9394476+01:00</Time>
+    </Item>
+    <Item>
+      <Source>playerFanSprite.png</Source>
+      <Name>playerFanSprite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\playerFanSprite.xnb</Output>
+      <Time>2015-10-06T20:45:25.7876403+01:00</Time>
+    </Item>
+    <Item>
+      <Source>exitButt.jpg</Source>
+      <Name>exitButt</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\exitButt.xnb</Output>
+      <Time>2015-10-07T18:51:52.2789516+01:00</Time>
+    </Item>
+    <Item>
+      <Source>startButt.jpg</Source>
+      <Name>startButt</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\startButt.xnb</Output>
+      <Time>2015-10-07T18:51:52.2829572+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

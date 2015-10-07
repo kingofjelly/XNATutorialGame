@@ -9,3 +9,7 @@ C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Conten
 C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\DefaultFont.xnb
 C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\Chiptune_Artic_Odyssey.wma
 C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\Chiptune_Artic_Odyssey.xnb
+C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\cowSprite.xnb
+C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\playerFanSprite.xnb
+C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\exitButt.xnb
+C:\Users\DMC\Desktop\GitHub\XNATutorialGame\XNATutorialGame\bin\x86\Debug\Content\startButt.xnb

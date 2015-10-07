@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -51,6 +52,31 @@ namespace XNATutorialGame
 
         Color backgroundColor = Color.Aquamarine;//change color to prove intersect
 
+        //Begin dealing with positions and textures for the buttons for the main menu
+        enum GameState
+        {
+            MainMenu,//main menu screen
+            Options,//options section
+            Playing,//when game is playing
+            Exit//quit game
+        }
+
+        GameState currentGameState = GameState.MainMenu;//when game loads, it's set to MainMenu
+
+        //mouseStates. Used to determine if key is released
+
+        MouseState mouseState;
+        MouseState previousMouseState;
+
+        
+        private Texture2D startButton;
+        private Texture2D exitButton;
+        
+        private Vector2 startButtonPosition;
+        private Vector2 exitButtonPosition;       
+
+        private Thread backgroundThread;
+
 
         public Game1()
         {
@@ -76,9 +102,11 @@ namespace XNATutorialGame
             mPlayerSprite = new PlayerFan();
             mPlayerScoreSprite = new PlayerScore();
             mMusicSounds = new GameMusicSounds();
-            
-            
-           
+
+
+            //get the mouse state
+            mouseState = Mouse.GetState();
+            previousMouseState = mouseState;
 
 
 
@@ -95,25 +123,21 @@ namespace XNATutorialGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            mCowSprite.LoadContent(this.Content, "SquareGuy");//call loadcontent method. this.Content, because you pass in Gam1 contentmanager
-            mPlayerSprite.LoadContent(this.Content, "WizardSquare");//call loadcontent method. this.Content, because you pass in Gam1 contentmanager
+            mCowSprite.LoadContent(this.Content, "cowSprite");//call loadcontent method. this.Content, because you pass in Gam1 contentmanager
+            mPlayerSprite.LoadContent(this.Content, "playerFanSprite");//call loadcontent method. this.Content, because you pass in Gam1 contentmanager
 
             //load font
             mPlayerScoreSprite.LoadContent(this.Content, "DefaultFont");
 
             //load song
-            //mMusicSounds.LoadContent(this.Content, "Chiptune_Artic_Odyssey");
+            mMusicSounds.LoadContent(this.Content, "Chiptune_Artic_Odyssey");
 
-            //load list?
-            //DONT NEED TO LOAD HERE. I LOAD AS I ADD TO LIST
-            //foreach (Cows mCowInList in mCowSprites)
-            //{
-            //    //for each cow in list, LOAD
-            //    mCowInList.LoadContent(this.Content, "SquareGuy");
-            //}
-            
-            
-            
+            //load buttons + put into pipeline
+
+            startButton = Content.Load<Texture2D>("startButt");
+            exitButton = Content.Load<Texture2D>("exitButt");
+
+            //NOTE:LOADING ISN'T AFFECTED BY GAME STATUS. JUST LEAVE IT IN THE PIPELINE
             
             
           
@@ -140,7 +164,7 @@ namespace XNATutorialGame
                 this.Exit();
 
             // TODO: Add your update logic here  
-            //RemoveFallenCowFromList();
+            
             mPlayerSprite.Update(gameTime);
             mCowSprite.Update(gameTime);
             checkIfIntersect();
@@ -204,12 +228,19 @@ namespace XNATutorialGame
         public void checkIfCowShouldSpawn()
         {
             //if timer == 100. add cow. reset timer
+            int randomCowPositionX; //random position which cow will be placed at, along the X axis
+            GameWideMethods GWM = new GameWideMethods();
             if (spawnTimer == 100)
             {
                 Cows mCowInList = new Cows();
-                mCowInList.LoadContent(this.Content, "SquareGuy");
+                mCowInList.LoadContent(this.Content, "cowSprite");
+                randomCowPositionX = GWM.randomNumer(1109);
+                mCowInList.cowPosition.X = randomCowPositionX; 
                 mCowSprites.Add(mCowInList);
                 spawnTimer = 0;//reset
+
+                //RNG IN HERE. INTERACT WITH RANDOM METHOD CLASS WIDE.
+                //CHANGE COWPOSITION BEFORE ADDING TO LIST?
             }
         }
 

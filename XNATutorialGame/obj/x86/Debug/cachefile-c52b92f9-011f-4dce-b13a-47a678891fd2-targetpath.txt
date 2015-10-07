@@ -3,3 +3,7 @@ Content\WizardSquare.xnb
 Content\DefaultFont.xnb
 Content\Chiptune_Artic_Odyssey.xnb
 Content\Chiptune_Artic_Odyssey.wma
+Content\cowSprite.xnb
+Content\playerFanSprite.xnb
+Content\exitButt.xnb
+Content\startButt.xnb

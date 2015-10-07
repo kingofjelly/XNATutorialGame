@@ -16,7 +16,7 @@ namespace XNATutorialGame
         //vector for position
         //texture 2d for texture
         //speed?
-        Vector2 playerPosition = new Vector2(540, 540);//position of player    X, Y
+        Vector2 playerPosition = new Vector2(540, 700);//position of player    X, Y
         Texture2D playerTexture;//cow texture
         string playerAssetName;
         Rectangle playerHitbox; //hitbox for my cow
@@ -24,7 +24,7 @@ namespace XNATutorialGame
         
         const int START_POSITION_X = 640;//X IS HORIZONTAL. Y IS VERTICAL!!!!
         const int START_POSITION_Y = 600;
-        const int WIZARD_SPEED = 160;
+        const int WIZARD_SPEED = 320;//160
         const int MOVE_UP = -1;
         const int MOVE_DOWN = 1;
         const int MOVE_LEFT = -2;
@@ -55,7 +55,7 @@ namespace XNATutorialGame
         public void Update(GameTime theGameTime)
         {
             //calculation means : Cow position = cow position + sum of the following
-            playerBoundary = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, 100, 100);//200, 200 is widtth and height. first to are position
+            playerBoundary = new Rectangle((int)playerPosition.X, (int)playerPosition.Y, 120, 50);//200, 200 is widtth and height. first to are position
             KeyboardState aCurrentKeyboardState = Keyboard.GetState();
             UpdateMovement(aCurrentKeyboardState);
             playerPosition += mDirection * mSpeed * (float)theGameTime.ElapsedGameTime.TotalSeconds;
@@ -91,7 +91,7 @@ namespace XNATutorialGame
                 }
 
 
-                if (playerPosition.X < 1080)//sprite is 200 wide
+                if (playerPosition.X < 1160)//sprite is 200 wide
                 {
                     if (aCurrentKeyboardState.IsKeyDown(Keys.Right) == true || aCurrentKeyboardState.IsKeyDown(Keys.D) == true)
                     {
@@ -99,7 +99,7 @@ namespace XNATutorialGame
                         mDirection.X = MOVE_RIGHT;
                     }
                 }
-                else if (playerPosition.X == 1080) //not 1280, due to sprite length of 200 pix
+                else if (playerPosition.X == 1160) //not 1280, due to sprite length of 200 pix
                 {
                     mSpeed.X = 0;
                 }
