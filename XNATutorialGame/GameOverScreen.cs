@@ -14,19 +14,15 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace XNATutorialGame
 {
-    public class PlayerScore
+    public class GameOverScreen
     {
-        //class for player score
-
         private SpriteFont font;
-        public int score = 0;
-        public int scoreToDock = 100;
-        public int highScore = 0;
         
+
 
         public void LoadContent(ContentManager theContentManager, string theAssetName)
         {
-            font = theContentManager.Load<SpriteFont>("DefaultFont");                
+            font = theContentManager.Load<SpriteFont>("DefaultFont");
         }
         //update
         public void Update()
@@ -34,14 +30,11 @@ namespace XNATutorialGame
             //score += amountToUpdateScoreBy;//update score by the amount given here
         }
         //draw
-        public void Draw(SpriteBatch theSpriteBatch)
+        public void Draw(SpriteBatch theSpriteBatch, int finalScore)
         {
 
-            theSpriteBatch.DrawString(font, "Score: " + score, new Vector2(1100, 100), Color.Black);
-            
+            theSpriteBatch.DrawString(font, "GAME OVER\nYour Highest Score: " + finalScore, new Vector2(540, 400), Color.Black);
+
         }
-
     }
-
-  
 }

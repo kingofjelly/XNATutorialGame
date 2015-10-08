@@ -35,6 +35,8 @@ namespace XNATutorialGame
         Texture2D mPlayerTexture;
         PlayerFan mPlayerSprite;
         PlayerScore mPlayerScoreSprite;
+        GameOverScreen gameOver;
+        
 
 
         //movement for falling object
@@ -53,15 +55,16 @@ namespace XNATutorialGame
         Color backgroundColor = Color.Aquamarine;//change color to prove intersect
 
         //Begin dealing with positions and textures for the buttons for the main menu
-        enum GameState
+        public enum GameState
         {
             MainMenu,//main menu screen
             Options,//options section
             Playing,//when game is playing
-            Exit//quit game
+            Exit,//quit game
+            GameOver//upon points < 0
         }
 
-        GameState currentGameState = GameState.MainMenu;//when game loads, it's set to MainMenu
+         public GameState currentGameState = GameState.MainMenu;//when game loads, it's set to MainMenu
 
         //mouseStates. Used to determine if key is released
 
@@ -104,6 +107,7 @@ namespace XNATutorialGame
             mPlayerSprite = new PlayerFan();
             mPlayerScoreSprite = new PlayerScore();
             mMusicSounds = new GameMusicSounds();
+            gameOver = new GameOverScreen();
 
             startButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 200);
             exitButtonPosition = new Vector2((GraphicsDevice.Viewport.Width / 2) - 50, 250);
@@ -133,6 +137,7 @@ namespace XNATutorialGame
 
             //load font
             mPlayerScoreSprite.LoadContent(this.Content, "DefaultFont");
+            gameOver.LoadContent(this.Content, "DefaultFont");
 
             //load song
             mMusicSounds.LoadContent(this.Content, "Chiptune_Artic_Odyssey");
@@ -211,6 +216,11 @@ namespace XNATutorialGame
                 this.Exit();
             }
 
+            if (currentGameState == GameState.GameOver)
+            {
+
+            }
+
           
             //i need a method for if on exit screen
 
@@ -251,6 +261,12 @@ namespace XNATutorialGame
                 spriteBatch.Draw(startButton, startButtonPosition, Color.White);
                 //i'll make a button class too
                 spriteBatch.Draw(exitButton, exitButtonPosition, Color.White);
+            }
+
+            if (currentGameState == GameState.GameOver)
+            {
+                
+                gameOver.Draw(this.spriteBatch, mPlayerScoreSprite.highScore);
             }
 
             spriteBatch.End();
@@ -298,10 +314,24 @@ namespace XNATutorialGame
          //loops through cowSprite List. If its boundary intersects/equals floor, remove from list
             for (int i = 0; i < mCowSprites.Count; i++)
             {
-                if (mCowSprites[i].cowBoundary.Y == 800 - 91)
+                if (mCowSprites[i].cowBoundary.Y == 800 - 91)//800 = heigh. 91 = sprite height
                 {
                     //mCowInList.MOVEMENT = MOVE_UP;
                     mCowSprites.RemoveAt(i);
+                    //*2 the points lost
+                    if (mPlayerScoreSprite.score > mPlayerScoreSprite.highScore)
+                    {
+                        //replace highscore, to display on game over screen
+                        mPlayerScoreSprite.highScore = mPlayerScoreSprite.score;
+                    }
+                    mPlayerScoreSprite.scoreToDock = mPlayerScoreSprite.scoreToDock * 2;
+                    mPlayerScoreSprite.score = mPlayerScoreSprite.score - mPlayerScoreSprite.scoreToDock;
+                    if (mPlayerScoreSprite.score < 0)
+                    {
+                        //less than 0 eventually
+                        currentGameState = GameState.GameOver;
+                    }
+                    
                 }
                 
             }

@@ -87,6 +87,7 @@
     <Compile Include="Cows.cs" />
     <Compile Include="FallingObjects.cs" />
     <Compile Include="GameMusicSounds.cs" />
+    <Compile Include="GameOverScreen.cs" />
     <Compile Include="GameWideMethods.cs" />
     <Compile Include="PlayerFan.cs" />
     <Compile Include="PlayerScore.cs" />
